@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import '../models/series.dart';
+import '../screens/climate_dashboard_screen.dart';
 import '../screens/home_screen.dart';
+import '../screens/indicator_detail_screen.dart';
 import '../screens/placeholder_screen.dart';
+import '../screens/services_dashboard_screen.dart';
+import '../screens/water_dashboard_screen.dart';
 
 class AppRoutes {
   static const home = '/';
@@ -15,10 +20,6 @@ class AppRoutes {
   static const about = '/about';
 
   static const _titles = {
-    water: 'Consumo de água',
-    climate: 'Clima local',
-    services: 'Serviços e ocorrências',
-    indicatorDetail: 'Detalhe do indicador',
     alerts: 'Alertas',
     alertDetail: 'Detalhe do alerta',
     report: 'Registrar ocorrência',
@@ -27,13 +28,14 @@ class AppRoutes {
   };
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    if (settings.name == home) {
-      return MaterialPageRoute(builder: (_) => const HomeScreen(), settings: settings);
-    }
-    final title = _titles[settings.name] ?? 'Nexo';
-    return MaterialPageRoute(
-      builder: (_) => PlaceholderScreen(title: title, args: settings.arguments),
-      settings: settings,
-    );
+    final Widget page = switch (settings.name) {
+      home => const HomeScreen(),
+      water => const WaterDashboardScreen(),
+      climate => const ClimateDashboardScreen(),
+      services => const ServicesDashboardScreen(),
+      indicatorDetail => IndicatorDetailScreen(series: settings.arguments as Series),
+      _ => PlaceholderScreen(title: _titles[settings.name] ?? 'Nexo', args: settings.arguments),
+    };
+    return MaterialPageRoute(builder: (_) => page, settings: settings);
   }
 }

@@ -34,4 +34,14 @@ class TerritoryProvider extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+    /// Consumo diário somado (todos os setores ou um setor específico), em ordem de data.
+  List<MapEntry<DateTime, double>> dailyWater({String? sector}) {
+    final map = <DateTime, double>{};
+    for (final r in water) {
+      if (sector != null && r.sector != sector) continue;
+      map[r.date] = (map[r.date] ?? 0) + r.liters;
+    }
+    return map.entries.toList()..sort((a, b) => a.key.compareTo(b.key));
+  }
 }
