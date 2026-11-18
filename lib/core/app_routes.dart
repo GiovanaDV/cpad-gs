@@ -6,6 +6,7 @@ import '../screens/indicator_detail_screen.dart';
 import '../screens/placeholder_screen.dart';
 import '../screens/services_dashboard_screen.dart';
 import '../screens/water_dashboard_screen.dart';
+import '../screens/splash_screen.dart';
 
 class AppRoutes {
   static const home = '/';
@@ -18,6 +19,7 @@ class AppRoutes {
   static const report = '/report';
   static const settings = '/settings';
   static const about = '/about';
+  static const splash = '/splash';
 
   static const _titles = {
     alerts: 'Alertas',
@@ -30,6 +32,7 @@ class AppRoutes {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     final Widget page = switch (settings.name) {
       home => const HomeScreen(),
+      splash => const SplashScreen(),
       water => const WaterDashboardScreen(),
       climate => const ClimateDashboardScreen(),
       services => const ServicesDashboardScreen(),

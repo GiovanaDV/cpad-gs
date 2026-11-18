@@ -4,6 +4,7 @@ import '../core/app_theme.dart';
 import '../widgets/app_card.dart';
 import '../widgets/human_decision_banner.dart';
 import '../widgets/data_status_card.dart';
+import '../widgets/nexo_logo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,13 @@ class HomeScreen extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nexo'),
+        title: const Row(
+          children: [
+            NexoMark(size: 32),
+            SizedBox(width: AppSpacing.sm),
+            Text('Nexo'),
+          ],
+        ),
         actions: [
           IconButton(
             tooltip: 'Privacidade e sobre',
@@ -25,7 +32,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
         children: [
-          Text('Conexão entre dados, território e pessoas.', style: text.titleMedium),
+          const BrandHeader(),
           const SizedBox(height: AppSpacing.md),
           const HumanDecisionBanner(),
           const SizedBox(height: AppSpacing.md),
