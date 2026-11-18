@@ -6,6 +6,7 @@ import '../models/occurrence.dart';
 abstract class OccurrenceRepository {
   Future<List<Occurrence>> getAll();
   Future<void> insert(Occurrence occurrence);
+  Future<void> deleteBySource(String source);
 
   /// SQLite em dispositivo; memória no Chrome (sqflite não roda na web).
   factory OccurrenceRepository.create() =>
@@ -20,10 +21,19 @@ class MemoryOccurrenceRepository implements OccurrenceRepository {
 
   @override
   Future<void> insert(Occurrence occurrence) async => _items.add(occurrence);
+
+  @override
+  Future<void> deleteBySource(String source) async => _items.removeWhere((o) => o.source == source);
 }
 
 class SqliteOccurrenceRepository implements OccurrenceRepository {
   Database? _db;
+
+  @override
+  Future<void> deleteBySource(String source) async {
+  final db = await _open();
+  await db.delete('occurrences', where: 'source = ?', whereArgs: [source]);
+  }
 
   Future<Database> _open() async {
     return _db ??= await openDatabase(
@@ -41,6 +51,8 @@ class SqliteOccurrenceRepository implements OccurrenceRepository {
         )
       '''),
     );
+
+
   }
 
   @override

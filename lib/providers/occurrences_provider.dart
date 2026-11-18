@@ -34,6 +34,14 @@ class OccurrencesProvider extends ChangeNotifier {
 
   Future<void> add(Occurrence occurrence) async {
     await _repo.insert(occurrence);
-    await load();
+    items = await _repo.getAll();
+    notifyListeners();
+  }
+
+  /// Apaga só o que o cidadão registrou neste aparelho (mantém os dados de exemplo).
+  Future<void> deleteCitizenData() async {
+    await _repo.deleteBySource('cidadão');
+    items = await _repo.getAll();
+    notifyListeners();
   }
 }

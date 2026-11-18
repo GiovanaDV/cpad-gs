@@ -1,8 +1,9 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import '../core/app_routes.dart';
 import '../core/app_theme.dart';
+import '../providers/settings_provider.dart';
 import '../widgets/nexo_logo.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,20 +13,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Timer? _timer;
-
   @override
   void initState() {
     super.initState();
-    _timer = Timer(const Duration(milliseconds: 2000), () {
-      if (mounted) Navigator.pushReplacementNamed(context, AppRoutes.home);
-    });
+    _goNext();
   }
 
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+  Future<void> _goNext() async {
+    final settings = context.read<SettingsProvider>();
+    final navigator = Navigator.of(context);
+    await Future.wait([Future.delayed(const Duration(milliseconds: 2000)), settings.load()]);
+    if (!mounted) return;
+    navigator.pushReplacementNamed(settings.consentAnswered ? AppRoutes.home : AppRoutes.consent);
   }
 
   @override

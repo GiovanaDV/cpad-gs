@@ -69,6 +69,13 @@ class AlertsProvider extends ChangeNotifier {
     await _persist();
   }
 
+  Future<void> clearDecisions() async {
+    _decisions = {};
+    notifyListeners();
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_key);
+  }
+
   void _recompute() {
     _compute();
     notifyListeners();
