@@ -5,6 +5,7 @@ import '../widgets/app_card.dart';
 import '../widgets/human_decision_banner.dart';
 import '../widgets/data_status_card.dart';
 import '../widgets/nexo_logo.dart';
+import '../widgets/alerts_home_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,6 +38,8 @@ class HomeScreen extends StatelessWidget {
           const HumanDecisionBanner(),
           const SizedBox(height: AppSpacing.md),
           const DataStatusCard(),
+          const SizedBox(height: AppSpacing.sm),
+          const AlertsHomeCard(),
           const SizedBox(height: AppSpacing.lg),
           Text('Painéis do território', style: text.titleLarge),
           const SizedBox(height: AppSpacing.sm),
