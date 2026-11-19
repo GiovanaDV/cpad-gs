@@ -1,10 +1,9 @@
 import 'dart:math' as math;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../core/app_routes.dart';
 import '../core/app_theme.dart';
-import '../core/format.dart';
 import '../core/trend.dart';
 import '../models/series.dart';
 import '../providers/territory_provider.dart';
