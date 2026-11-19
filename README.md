@@ -35,9 +35,10 @@
 
 ## 2. Integrantes
 
-|---|---|
 | [Eduardo Bacelar Rudner] | [RM 564925] |
+
 | [Giovana Dias Valentini] | [RM 562390] |
+
 | [Raquel Amaral de Oliveira] | [RM 566491] |
 
 
