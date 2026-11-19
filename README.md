@@ -268,11 +268,6 @@ flutter build apk --release
 - Para ver a tela de consentimento de novo: limpe os dados do app no Android, ou use *Clear site data* no Chrome (F12 → Application → Storage).
 - Na primeira execução, o app precisa de internet para buscar o clima. Depois disso, usa o último resultado salvo quando está offline.
 
----
-
-## 9. Vídeo
-
-[▶ Assistir à demonstração (até 3 minutos)]([https://youtube.com/shorts/p-7GxUbgB4Y])
 
 ---
 
